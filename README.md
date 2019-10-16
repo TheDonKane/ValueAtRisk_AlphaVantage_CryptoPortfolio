@@ -2,7 +2,7 @@
  VaR model for crypto asset portfolio. I am making this model much more in depth and user friendly than my last. Adding a few new features as well.
 
  ## Install
- To install the package use:
+ To install the Alpha Vantage package use:
  ```shell
  pip install alpha_vantage
  ```
