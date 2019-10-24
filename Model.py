@@ -18,6 +18,7 @@ api_key = 'USYAK8KB5VER3M1P'
 cc = CryptoCurrencies(key=api_key, output_format='pandas')
 data, meta_data = cc.get_digital_currency_daily(symbol='BTC', market='USD')
 
+data2, meta_data2 = cc.get_digital_currency_daily(symbol='ETH', market='USD')
 #Calculate daily returns
 df = data['4a. close (USD)']
 
@@ -30,7 +31,7 @@ mean = np.mean(percentage)
 std_dev = np.std(percentage)
 percentage.hist(bins=50)
 x = np.linspace(mean - 3*std_dev, mean + 3*std_dev, 100)
-#plt.plot(x,mlab.normpdf(x, mean, std_dev), "r" )
+plt.plot(x,mlab.normpdf(x, mean, std_dev), "r" )
 plt.xlabel('Returns')
 plt.ylabel('Frequency')
 plt.show()
