@@ -3,6 +3,7 @@ import numpy as np
 import pandas as pd
 
 #Plotting
+from matplotlib import mlab
 import matplotlib.pyplot as plt
 import seaborn
 
@@ -14,11 +15,20 @@ api_key = 'USYAK8KB5VER3M1P'
 
 #pull Data
 cc = CryptoCurrencies(key=api_key, output_format='pandas')
-data, meta_data = cc.get_digital_currency_daily(symbol='ETH', market='USD')
+data, meta_data = cc.get_digital_currency_daily(symbol='BTC', market='USD')
 
 #Calculate daily returns
-#data['returns'] =
-df = data['4a. close (USD)'].pct_change()
+df = data['4a. close (USD)']
 
+percentage = df.pct_change()
 
-print(df)
+print(percentage[1:])
+
+mean = np.mean(percentage)
+std_dev = np.std(percentage)
+percentage.hist(bins=40, histtype='stepfilled', alpha=0.5)
+x = np.linspace(mean - 3*std_dev, mean + 3*std_dev, 100)
+plt.plot(x,mlab.normpdf(x, mean, std_dev), "r" )
+plt.xlabel('Returns')
+plt.ylabel('Frequency')
+plt.show()
