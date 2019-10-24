@@ -14,6 +14,11 @@ api_key = 'USYAK8KB5VER3M1P'
 
 #pull Data
 cc = CryptoCurrencies(key=api_key, output_format='pandas')
-data, meta_data = cc.get_digital_currency_daily(symbol='BTC', market='USD')
-data['4b. close (USD)']
-print(data)
+data, meta_data = cc.get_digital_currency_daily(symbol='ETH', market='USD')
+
+#Calculate daily returns
+#data['returns'] =
+df = data['4a. close (USD)'].pct_change()
+
+
+print(df)
