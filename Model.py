@@ -6,6 +6,7 @@ import pandas as pd
 from matplotlib import mlab
 import matplotlib.pyplot as plt
 import seaborn
+from scipy.stats import norm
 
 #Data fetching
 from alpha_vantage.cryptocurrencies import CryptoCurrencies
@@ -24,11 +25,12 @@ percentage = df.pct_change()
 
 print(percentage[1:])
 
+#plot histogram
 mean = np.mean(percentage)
 std_dev = np.std(percentage)
-percentage.hist(bins=40, histtype='stepfilled', alpha=0.5)
+percentage.hist(bins=50)
 x = np.linspace(mean - 3*std_dev, mean + 3*std_dev, 100)
-plt.plot(x,mlab.normpdf(x, mean, std_dev), "r" )
+#plt.plot(x,mlab.normpdf(x, mean, std_dev), "r" )
 plt.xlabel('Returns')
 plt.ylabel('Frequency')
 plt.show()
